@@ -63,7 +63,7 @@ const Show = () => {
   const store = showStore();
   const params = useParams();
   const netlifyFunctionURL =
-    "https://your-netlify-domain.netlify.app/.netlify/functions/proxy";
+    "https://verdant-lokum-789720.netlify.app/.netlify/functions/proxy";
 
   useEffect(() => {
     store.fetchData(params.id);
