@@ -62,6 +62,9 @@ const data = [
 const Show = () => {
   const store = showStore();
   const params = useParams();
+  const netlifyFunctionURL =
+    "https://your-netlify-domain.netlify.app/.netlify/functions/proxy";
+
   useEffect(() => {
     store.fetchData(params.id);
     console.log(params);
@@ -71,7 +74,14 @@ const Show = () => {
   if (!store.data) return <></>;
 
   const Coin = () => {
-    const texture = useLoader(TextureLoader, store.data.image.large);
+    // Construct the URL for the proxy
+    const imageUrl = store.data.image.large;
+    const proxyUrl = `${netlifyFunctionURL}?imageUrl=${encodeURIComponent(
+      imageUrl
+    )}`;
+
+    // Use the proxy URL to load the texture
+    const texture = useLoader(TextureLoader, proxyUrl);
 
     return (
       <mesh rotation={[Math.PI / 2, 0, 0]}>

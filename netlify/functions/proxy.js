@@ -18,8 +18,9 @@ exports.handler = async function (event, context) {
       statusCode: 200,
       body: Buffer.from(response.data).toString("base64"),
       headers: {
-        "Content-Type": "image/png", // Adjust the content type according to your needs
+        "Content-Type": "image/png", // Adjust based on the image type
         "Content-Disposition": "inline",
+        "Access-Control-Allow-Origin": "*", // Add this line
       },
       isBase64Encoded: true,
     };
